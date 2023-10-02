@@ -10,7 +10,7 @@ python3-setuptools
 
 # More python 2
 python-setuptools
-python-dev
+python2-dev
 
 # CSharp Linting
 mono-mcs
