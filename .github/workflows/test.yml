@@ -10,7 +10,7 @@ on:
 
 env:
     GOPATH: $HOME/go
-    PATH: $GOPATH/bin:$PATH
+    PATH: $PATH:$GOPATH/bin:
 
 jobs:
   tests:
