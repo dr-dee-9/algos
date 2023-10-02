@@ -26,8 +26,6 @@ jobs:
           run: ./.bin/install_apt.sh
         - name: Install npm
           run: ./.bin/install_npm.sh
-        - name: Install pip2
-          run: ./.bin/install_pip2.sh
         - name: Install pip3
           run: ./.bin/install_pip3.sh
         - name: Run Tests
