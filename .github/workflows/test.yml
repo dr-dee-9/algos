@@ -3,10 +3,10 @@ name: Run Test
 on:
     push:
         branches:
-            - 'main'
+            - 'master'
     pull_request:
         branches:
-            - 'main'
+            - 'master'
 
 env:
     GOPATH: $HOME/go
