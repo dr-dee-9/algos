@@ -21,7 +21,7 @@ jobs:
         - name: Setup Node
           uses: actions/setup-node@v3
           with:
-            node-version: 'lts'
+            node-version: 18
         - name: Install apt
           run: ./.bin/install_apt.sh
         - name: Install Go
