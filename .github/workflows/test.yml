@@ -24,8 +24,6 @@ jobs:
             node-version: 18
         - name: Install apt
           run: ./.bin/install_apt.sh
-        - name: Install Go
-          run: ./.bin/install_go.sh
         - name: Install npm
           run: ./.bin/install_npm.sh
         - name: Install pip2
