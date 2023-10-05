@@ -72,7 +72,9 @@ jobs:
             python-version: '3.x'
 
         - name: Install python dependecy
-          run: sudo pip3 install --ignore-installed -Ur pip3-requirements.txt
+          run: | 
+            sudo apt install python-dev
+            sudo pip3 install --ignore-installed -Ur pip3-requirements.txt
         
         - name: Installing Coala
           run: pip3 install coala-bears
