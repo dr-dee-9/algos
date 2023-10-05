@@ -70,15 +70,8 @@ jobs:
           uses: actions/setup-python@v4
           with:
             python-version: '3.x'
-        - name: Versions
-          run: |
-            pip -V
-            pip3 -V
-            pip2 -V
-        - name: Install npm
-          run: ./.bin/install_npm.sh
-        - name: Install pip3
-          run: ./.bin/install_pip3.sh
+        - name: Install python dependecy
+          run: sudo pip3 install --ignore-installed -Ur pip3-requirements.txt
         - name: Install pip2
           run: ./.bin/install_pip2.sh
         - name: Run Tests
