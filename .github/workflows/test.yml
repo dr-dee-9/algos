@@ -1,3 +1,43 @@
+# name: Run Test
+
+# on:
+#     push:
+#         branches:
+#             - 'master'
+#     pull_request:
+#         branches:
+#             - 'master'
+
+# env:
+#     GOPATH: $HOME/go
+
+# jobs:
+#   tests:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#         - name: Checkout
+#           uses: actions/checkout@v4
+#         - name: Setup Node
+#           uses: actions/setup-node@v3
+#           with:
+#             node-version: 18
+#         - name: Install apt
+#           run: ./.bin/install_apt.sh
+#         - name: Install npm
+#           run: ./.bin/install_npm.sh
+#         - name: Install pip3
+#           run: ./.bin/install_pip3.sh
+#         - name: Install pip2
+#           run: ./.bin/install_pip2.sh
+#         - name: Run Tests
+#           run: ./.bin/test_running.sh
+#         - name: Run Coala
+#           run: coala --ci
+#         - name: Run eclint checks 
+#           run: eclint check '**/*.{java,c,cpp,js,cs}'
+
+
 name: Run Test
 
 on:
@@ -8,9 +48,6 @@ on:
         branches:
             - 'master'
 
-env:
-    GOPATH: $HOME/go
-
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -18,12 +55,27 @@ jobs:
     steps:
         - name: Checkout
           uses: actions/checkout@v4
+
         - name: Setup Node
           uses: actions/setup-node@v3
           with:
             node-version: 18
-        - name: Install apt
-          run: ./.bin/install_apt.sh
+
+        - name: Setup Go
+          uses: actions/setup-go@v4
+          with:
+            go-version: 'stable'
+        
+        - name: Setup python
+          uses: actions/setup-python@v4
+          with:
+            python-version: |
+              '2.x'
+              '3.x'
+        - name: Versions
+          run: pip -V
+          run: pip3 -V
+          run: pip2 -V
         - name: Install npm
           run: ./.bin/install_npm.sh
         - name: Install pip3
