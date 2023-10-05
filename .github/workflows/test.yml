@@ -73,9 +73,10 @@ jobs:
               '2.x'
               '3.x'
         - name: Versions
-          run: pip -V
-          run: pip3 -V
-          run: pip2 -V
+          run: |
+            pip -V
+            pip3 -V
+            pip2 -V
         - name: Install npm
           run: ./.bin/install_npm.sh
         - name: Install pip3
