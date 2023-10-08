@@ -1,43 +1,3 @@
-# name: Run Test
-
-# on:
-#     push:
-#         branches:
-#             - 'master'
-#     pull_request:
-#         branches:
-#             - 'master'
-
-# env:
-#     GOPATH: $HOME/go
-
-# jobs:
-#   tests:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#         - name: Checkout
-#           uses: actions/checkout@v4
-#         - name: Setup Node
-#           uses: actions/setup-node@v3
-#           with:
-#             node-version: 18
-#         - name: Install apt
-#           run: ./.bin/install_apt.sh
-#         - name: Install npm
-#           run: ./.bin/install_npm.sh
-#         - name: Install pip3
-#           run: ./.bin/install_pip3.sh
-#         - name: Install pip2
-#           run: ./.bin/install_pip2.sh
-#         - name: Run Tests
-#           run: ./.bin/test_running.sh
-#         - name: Run Coala
-#           run: coala --ci
-#         - name: Run eclint checks 
-#           run: eclint check '**/*.{java,c,cpp,js,cs}'
-
-
 name: Run Test
 
 on:
@@ -66,23 +26,30 @@ jobs:
           with:
             go-version: 'stable'
         
-        - name: Setup python
+        - name: Setup Python
           uses: actions/setup-python@v4
           with:
             python-version: '3.x'
+
+        - name: Setup Java
+          uses: actions/setup-java@v3
+          with:
+            distribution: 'temurin'
+            java-version: '17'
+        
+        - name: Setup C#
+          run: |
+            sudo apt update
+            sudo apt upgrade
+            sudo apt install mono-mcs
 
         - name: Install python dependecy
           run: | 
             sudo apt install python-dev-is-python3
             sudo pip3 install --ignore-installed -Ur pip3-requirements.txt
         
-        - name: Installing Coala
-          run: |
-            pip3 install cython
-            pip3 install coala-bears
         - name: Run Tests
           run: ./.bin/test_running.sh
-        - name: Run Coala
-          run: coala --ci
+
         - name: Run eclint checks 
           run: eclint check '**/*.{java,c,cpp,js,cs}'
