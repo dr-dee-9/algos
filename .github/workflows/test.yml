@@ -39,8 +39,6 @@ jobs:
         
         - name: Setup C#
           run: |
-            sudo apt update
-            sudo apt upgrade
             sudo apt install mono-mcs
 
         - name: Install python dependecy
